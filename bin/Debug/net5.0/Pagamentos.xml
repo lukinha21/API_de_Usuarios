@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pagamentos</name>
+    </assembly>
+    <members>
+        <member name="T:Pagamentos.Controllers.CartoesController">
+            <summary>
+            Controlador para gerenciar operações relacionadas a cartões de pagamento.
+            </summary>
+        </member>
+        <member name="M:Pagamentos.Controllers.CartoesController.#ctor(Pagamentos.Services.Interface.ICartaoService)">
+            <summary>
+            Construtor do controlador CartoesController.
+            </summary>
+            <param name="cartaoService">Serviço para operações de cartões.</param>
+        </member>
+        <member name="M:Pagamentos.Controllers.CartoesController.ObterBandeira(System.String)">
+            <summary>
+            Obtém a bandeira de um cartão específico.
+            </summary>
+            <param name="cartao">Número do cartão a ser verificado.</param>
+            <returns>A bandeira do cartão se encontrada; caso contrário, retorna 404 Not Found.</returns>
+            <response code="200">Retorna a bandeira do cartão.</response>
+            <response code="404">Se a bandeira do cartão não for encontrada.</response>
+        </member>
+        <member name="M:Pagamentos.Controllers.CartoesController.ValidarCartao(System.String)">
+            <summary>
+            Valida se um cartão existe e está válido.
+            </summary>
+            <param name="cartao">Número do cartão a ser validado.</param>
+            <returns>Um valor booleano indicando se o cartão é válido.</returns>
+            <response code="200">Retorna o resultado da validação.</response>
+        </member>
+        <member name="T:Pagamentos.Controllers.PagamentosController">
+            <summary>
+            Controlador para gerenciar operações relacionadas pagamentos.
+            </summary>
+        </member>
+        <member name="M:Pagamentos.Controllers.PagamentosController.CalcularParcelas(Pagamentos.DTOs.CalculoParcelasRequest)">
+            <summary>
+            Calcula as parcelas de um pagamento com base no valor total, taxa de juros e quantidade de parcelas.
+            </summary>
+            <param name="request">Objeto com os detalhes do cálculo de parcelas.</param>
+            <returns>Lista de parcelas calculadas.</returns>
+        </member>
+        <member name="M:Pagamentos.Controllers.PagamentosController.CriarPagamento(Pagamentos.DTOs.TransacaoRequest)">
+            <summary>
+            Inicia o processo de pagamento com os detalhes fornecidos.
+            </summary>
+            <param name="transacao">Detalhes da transação a ser criada.</param>
+            <returns>ID da transação criada ou BadRequest em caso de erro.</returns>
+        </member>
+        <member name="M:Pagamentos.Controllers.PagamentosController.ObterSituacao(System.Int32)">
+            <summary>
+            Consulta a situação de um pagamento com base no seu ID.
+            </summary>
+            <param name="id">ID da transação.</param>
+            <returns>A situação do pagamento.</returns>
+        </member>
+        <member name="M:Pagamentos.Controllers.PagamentosController.ConfirmarPagamento(System.Int32)">
+            <summary>
+            Confirma o pagamento do ID informado.
+            </summary>
+            <param name="id">ID da transação a ser confirmada.</param>
+            <returns>Status da operação.</returns>
+        </member>
+        <member name="M:Pagamentos.Controllers.PagamentosController.CancelarPagamento(System.Int32)">
+            <summary>
+            Cancela um pagamento, se ainda não tiver sido confirmado.
+            </summary>
+            <param name="id">ID da transação a ser cancelada.</param>
+            <returns>Status da operação.</returns>
+        </member>
+        <member name="T:Pagamentos.Domain.Cartao">
+            <summary>
+            Representa um cartão de pagamento.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Cartao.Numero">
+            <summary>
+            Número do cartão, que também é a chave primária.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Cartao.Validade">
+            <summary>
+            Data de validade do cartão.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.TransacaoId">
+            <summary>
+            Representa uma transação de pagamento.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.Valor">
+            <summary>
+            Valor total da transação.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.Cartao">
+            <summary>
+            Número do cartão de crédito associado à transação.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.Cvv">
+            <summary>
+            Código de verificação do cartão (CVV).
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.Parcelas">
+            <summary>
+            Número de parcelas para o pagamento.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.Domain.Transacao.Situacao">
+            <summary>
+            Situação atual da transação, representada por um valor numérico.
+            </summary>
+        </member>
+        <member name="T:Pagamentos.DTOs.CalculoParcelasRequest">
+            <summary>
+            Objeto de transferência de dados para solicitar o cálculo de parcelas de um pagamento.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.DTOs.CalculoParcelasRequest.ValorTotal">
+            <summary>
+            Valor total da transação que será parcelada.
+            </summary>
+            <example>1000.50</example>
+        </member>
+        <member name="P:Pagamentos.DTOs.CalculoParcelasRequest.TaxaJuros">
+            <summary>
+            Taxa de juros aplicada ao parcelamento.
+            </summary>
+            <example>0.05</example>
+        </member>
+        <member name="P:Pagamentos.DTOs.CalculoParcelasRequest.QuantidadeParcelas">
+            <summary>
+            Quantidade de parcelas desejadas.
+            </summary>
+            <example>12</example>
+        </member>
+        <member name="T:Pagamentos.DTOs.TransacaoRequest">
+            <summary>
+            Objeto de transferência de dados para criar um pagamento.
+            </summary>
+        </member>
+        <member name="P:Pagamentos.DTOs.TransacaoRequest.Cartao">
+            <summary>
+            Número do cartão de crédito a ser utilizado na transação.
+            </summary>
+            <example>1111222233334444</example>
+        </member>
+        <member name="P:Pagamentos.DTOs.TransacaoRequest.Valor">
+            <summary>
+            Valor total da transação que será processada.
+            </summary>
+            <example>100.50</example>
+        </member>
+        <member name="P:Pagamentos.DTOs.TransacaoRequest.Cvv">
+            <summary>
+            Código de verificação do cartão (CVV).
+            </summary>
+            <example>123</example>
+        </member>
+        <member name="P:Pagamentos.DTOs.TransacaoRequest.Parcelas">
+            <summary>
+            Número de parcelas para o pagamento.
+            </summary>
+            <example>3</example>
+        </member>
+        <member name="T:Pagamentos.Enums.SituacaoPagamento">
+            <summary>
+            Representa as possíveis situações de um pagamento.
+            </summary>
+        </member>
+        <member name="F:Pagamentos.Enums.SituacaoPagamento.Pendente">
+            <summary>
+            Pagamento pendente.
+            </summary>
+        </member>
+        <member name="F:Pagamentos.Enums.SituacaoPagamento.Confirmado">
+            <summary>
+            Pagamento confirmado.
+            </summary>
+        </member>
+        <member name="F:Pagamentos.Enums.SituacaoPagamento.Cancelado">
+            <summary>
+            Pagamento cancelado.
+            </summary>
+        </member>
+    </members>
+</doc>

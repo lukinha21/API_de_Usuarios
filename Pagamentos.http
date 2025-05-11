@@ -1,0 +1,6 @@
+@Pagamentos_HostAddress = http://localhost:5255
+
+GET {{Pagamentos_HostAddress}}/index.html
+Accept: application/json
+
+###

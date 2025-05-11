@@ -1,0 +1,6 @@
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.csproj.AssemblyReference.cache
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.AssemblyInfoInputs.cache
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.AssemblyInfo.cs
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.csproj.CoreCompileInputs.cache
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.MvcApplicationPartsAssemblyInfo.cs
+E:\2 Semestre\LP\Pagamentos\Pagamentos\obj\Release\net8.0\Pagamentos.MvcApplicationPartsAssemblyInfo.cache
